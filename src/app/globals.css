@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "Consolas", "Liberation Mono", monospace;
+
+  /* Design tokens — "atelier technique" */
+  --ink: #12151b;          /* background graphite profond */
+  --ink-raised: #1a1e26;   /* surfaces légèrement surélevées */
+  --ink-line: #2a2f3a;     /* lignes/bordures subtiles */
+  --paper: #eceae4;        /* texte principal, blanc cassé froid */
+  --paper-dim: #9aa0ab;    /* texte secondaire */
+  --signal-before: #ff8a3d; /* ambre — état "avant" / poids original */
+  --signal-after: #3ddc97;  /* menthe — état "après" / gain */
+  --signal-after-dim: #234438;
+  --signal-before-dim: #4a3322;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-line: var(--ink-line);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-signal-before: var(--signal-before);
+  --color-signal-after: var(--signal-after);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  background: var(--ink);
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--signal-after);
+  color: var(--ink);
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid var(--signal-after);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
